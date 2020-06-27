@@ -103,7 +103,15 @@
       </v-col>
       <v-col cols="3">
           <v-card>
-              <v-card-title>Prediction Results :  {{ result }}  </v-card-title>
+              <v-row align="center">
+                  <v-col cols="10">
+              <v-card-title>Prediction Results :  {{ result }}
+            </v-card-title>
+            </v-col>
+                <v-col cols="2">
+            <v-progress-circular indeterminate="true" value="20" v-if="resultLoading"></v-progress-circular>
+                </v-col>
+          </v-row>
           </v-card>
       </v-col>
                </v-row>
