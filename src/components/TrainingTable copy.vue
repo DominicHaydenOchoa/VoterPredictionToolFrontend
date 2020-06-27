@@ -3,7 +3,7 @@
   <v-app id="TrainingTable">
     <v-card :dark="true">
       <v-card-title>
-        Model Testing Data
+        Model Training Data
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -28,7 +28,7 @@
     no-data-text="No data to display"
     :loading="loading"
     height="800px"
-    loading-text="Loading Model Testing Data..."
+    loading-text="Loading Model Training Data..."
     class="elevation-1">
     </v-data-table>
       </v-card>
@@ -40,7 +40,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'testingtable',
+  name: 'trainingtable',
   components: {
   },
 
@@ -58,7 +58,8 @@ export default {
         { text: 'Precinct', value: 'precinct' },
         { text: 'Gender', value: 'gender' },
         { text: 'Age', value: 'age' },
-        { text: 'Party', value: 'party' }
+        { text: 'Party', value: 'party' },
+        { text: 'Early Voter', value: 'early_vote' }
       ]
     }
   },
@@ -70,7 +71,7 @@ export default {
   methods: {
     populateTable: function () {
       this.loading = true
-      axios.get('https://hevm-backend.herokuapp.com/api/testing_data/')
+      axios.get('https://hevm-backend.herokuapp.com/api/training_data/')
         .then((response) => {
           this.tableData = response.data
           this.loading = false

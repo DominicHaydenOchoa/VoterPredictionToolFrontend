@@ -87,7 +87,7 @@ export default {
           if (response.statusText === 'OK') {
             console.log('LOGIN SUCCESS')
             this.loading = false
-            router.push({ path: '/dashboard', componenet: Dashboard })
+            router.push({ path: '/dashboard', component: Dashboard })
           } else if (response.status === 204) {
             console.log('LOGIN FAILED')
             this.loginResult = 'Invalid login. Try Again.'
