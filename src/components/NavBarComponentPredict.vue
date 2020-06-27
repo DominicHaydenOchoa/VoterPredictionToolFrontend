@@ -1,5 +1,5 @@
 <template>
-  <div class="NavBarComponent">
+  <div class="NavBarComponentPredict">
       <v-navigation-drawer
           v-model="drawer"
           :color="color"
@@ -53,9 +53,9 @@
 import router from '../router/index'
 import Dashboard from '../views/Dashboard'
 import TestingDashboard from '../views/TestingDashboard'
-import predictiontool from '../views/PredictionTool'
+import PredictionTool from '../views/PredictionTool'
 export default {
-  name: 'NavBarComponent',
+  name: 'NavBarComponentPredict',
   data: function () {
     return {
       sidebarMenu: true,
@@ -64,7 +64,7 @@ export default {
       items: [
         { title: 'Training Data Breakdown', icon: 'mdi-view-dashboard', url: '/dashboard', component: Dashboard },
         { title: 'Testing Data Breakdown', icon: 'mdi-view-dashboard', url: '/testingdashboard', component: TestingDashboard },
-        { title: 'Vote Prediction Tool', icon: 'mdi-image', url: '/predictiontool', component: predictiontool }
+        { title: 'Vote Prediction Tool', icon: 'mdi-image', url: '/predictiontool', component: PredictionTool }
       ],
       color: '',
       colors: [

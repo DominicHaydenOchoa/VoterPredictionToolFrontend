@@ -21,6 +21,11 @@ const routes = [
     component: () => import('../views/TestingDashboard.vue')
   },
   {
+    path: '/predictiontool',
+    name: 'PredictionTool',
+    component: () => import('../views/PredictionTool.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

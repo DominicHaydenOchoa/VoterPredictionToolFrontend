@@ -53,6 +53,7 @@
 import router from '../router/index'
 import Dashboard from '../views/Dashboard'
 import TestingDashboard from '../views/TestingDashboard'
+import predictiontool from '../views/PredictionTool'
 export default {
   name: 'NavBarComponent',
   data: function () {
@@ -63,8 +64,8 @@ export default {
       items: [
         { title: 'Training Data Breakdown', icon: 'mdi-view-dashboard', url: '/dashboard', component: Dashboard },
         { title: 'Testing Data Breakdown', icon: 'mdi-view-dashboard', url: '/testingdashboard', component: TestingDashboard },
-        { title: 'Vote Prediction Tool', icon: 'mdi-image' },
-        { title: 'About', icon: 'mdi-help-box' }
+        { title: 'Vote Prediction Tool', icon: 'mdi-image', url: '/predictiontool', component: predictiontool }
+
       ],
       color: '',
       colors: [
