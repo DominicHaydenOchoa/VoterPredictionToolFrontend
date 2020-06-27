@@ -1,90 +1,42 @@
 <template>
-  <div class="dashboard">
+  <div id="dashboard">
     <v-app>
-       <v-container>
-      <v-navigation-drawer
-          v-model="drawer"
-          :color="color"
-          :expand-on-hover="expandOnHover"
-          :mini-variant="miniVariant"
-          :right="right"
-          :permanent="permanent"
-          :src="bg"
-          absolute
-          dark
-        >
-          <v-list
-            dense
-            nav
-            class="py-0"
-          >
-            <v-list-item two-line :class="miniVariant && 'px-0'">
-              <v-list-item-avatar>
-                <img src="https://i0.wp.com/www.cathwear.com/wp-content/uploads/2019/12/avatar-icon-scaled.png?fit=2560%2C2560&ssl=1">
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title>Application</v-list-item-title>
-                <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-divider></v-divider>
-
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-    </v-container>
+      <v-main>
+        <v-layout row wrap>
+          <v-flex xs4 md2>
+            <NavBarComponent></NavBarComponent>
+          </v-flex>
+          <v-flex xs8 md10>
+              <v-layout row wrap>
+                <v-flex xs4 md6>
+              <trainingtable></trainingtable>
+                </v-flex>
+                <v-flex xs4 md4>
+                  <trainingchart></trainingchart>
+                </v-flex>
+              </v-layout>
+          </v-flex>
+        </v-layout>
+        </v-main>
     </v-app>
   </div>
-</template>
+</template>>
 
 <script>
+import NavBarComponent from '../components/NavBarComponent'
+import trainingtable from '../components/TrainingTable'
+import trainingchart from '../components/TrainingChart'
 export default {
   name: 'Dashboard',
   data: function () {
     return {
-      sidebarMenu: true,
-      toggleMini: true,
-      drawer: true,
-      items: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-        { title: 'Photos', icon: 'mdi-image' },
-        { title: 'About', icon: 'mdi-help-box' }
-      ],
-      color: '',
-      colors: [
-        'primary',
-        'blue',
-        'success',
-        'red',
-        'teal'
-      ],
-      right: false,
-      permanent: true,
-      miniVariant: true,
-      expandOnHover: true,
-      background: true
     }
   },
 
-  computed: {
-    bg () {
-      return this.background
-        ? 'https://wallpaperaccess.com/full/99810.jpg' : undefined
-    }
+  components: {
+    NavBarComponent,
+    trainingtable,
+    trainingchart
   }
 }
 </script>>
