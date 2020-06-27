@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard">
-    <v-app>
       <v-navigation-drawer
           v-model="drawer"
           :color="color"
+          floating
           :expand-on-hover="expandOnHover"
           :mini-variant="miniVariant"
           :right="right"
@@ -23,8 +23,8 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Application</v-list-item-title>
-                <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+                <v-list-item-title>Hispanic Early Voting</v-list-item-title>
+                <v-list-item-subtitle>Data & Prediction Tool</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
@@ -45,7 +45,6 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-    </v-app>
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
 
-  <div id="trainingchart">
+  <div id="trainingchartage">
     <v-card
-    height="300px"
-    width="720"
+    height="290px"
+    width="700"
     :hover="true">
     <v-container>
-       <vueapexchart ref="chart" type="line" width="560" height="230" :options="chartOptions" :series="series"></vueapexchart>
+       <vueapexchart ref="chart" type="line" width="540" height="220" :options="chartOptions" :series="series"></vueapexchart>
        <v-btn start @click="updateChart()">Load Data</v-btn>
     </v-container>
     </v-card>
@@ -18,7 +18,7 @@ import axios from 'axios'
 import vueapexchart from 'vue-apexcharts'
 
 export default {
-  name: 'trainingchart',
+  name: 'trainingchartage',
   components: { vueapexchart },
   data: function () {
     return {
@@ -54,7 +54,7 @@ export default {
           curve: 'smooth'
         },
         title: {
-          text: 'Percentage of Early Voters by Congressional Disctrict',
+          text: 'Percentage of Early Voters by Voter Age',
           align: 'center'
         },
         grid: {
@@ -68,9 +68,9 @@ export default {
           size: 1
         },
         xaxis: {
-          categories: ['CD 1', ' CD 2', 'CD 3', 'CD 4', 'CD 5', 'CD 6', 'CD 7', 'CD 8', 'CD 9'],
+          categories: ['18-34', '35-44', '45-54', '55-64', '65-74', '75-84', 'Over 85'],
           title: {
-            text: 'Congressional District'
+            text: 'Voter Age'
           }
         },
         yaxis: {
@@ -87,25 +87,25 @@ export default {
           offsetY: -25,
           offsetX: -5
         },
-        CDtotals: null,
-        CDpcts: null
+        agetotals: null,
+        agepcts: null
       }
     }
   },
 
   created: function () {
     axios.get('https://hevm-backend.herokuapp.com/api/training_data_count/', {
-      params: { key: 'CD' }
+      params: { key: 'age' }
     })
       .then((response) => {
-        this.CDtotals = response.data
+        this.agetotals = response.data
 
         var arr = []
-        for (var i = 0; i < this.CDtotals.length; i++) {
+        for (var i = 0; i < this.agetotals.length; i++) {
           arr.push(
-            Math.floor(parseFloat(this.CDtotals[i].early_vote_yes) / parseFloat(this.CDtotals[i].CD__count) * 100))
+            Math.floor(parseFloat(this.agetotals[i].early_vote_yes) / parseFloat(this.agetotals[i].age__count) * 100))
         }
-        this.CDpcts = arr
+        this.agepcts = arr
       }
       )
   },
@@ -119,11 +119,10 @@ export default {
     },
 
     updateChart: function () {
-      console.log(this.CDpcts)
+      console.log(this.agepcts)
       this.series = [{
-        data: this.CDpcts
+        data: this.agepcts
       }]
-      console.log(this.series.data)
     }
   }
 }

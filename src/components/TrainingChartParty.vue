@@ -1,6 +1,6 @@
 <template>
 
-  <div id="trainingchart">
+  <div id="trainingchartparty">
     <v-card
     height="300px"
     width="720"
@@ -18,7 +18,7 @@ import axios from 'axios'
 import vueapexchart from 'vue-apexcharts'
 
 export default {
-  name: 'trainingchart',
+  name: 'trainingchartparty',
   components: { vueapexchart },
   data: function () {
     return {
@@ -54,7 +54,7 @@ export default {
           curve: 'smooth'
         },
         title: {
-          text: 'Percentage of Early Voters by Congressional Disctrict',
+          text: 'Percentage of Early Voters by Political Party',
           align: 'center'
         },
         grid: {
@@ -68,9 +68,9 @@ export default {
           size: 1
         },
         xaxis: {
-          categories: ['CD 1', ' CD 2', 'CD 3', 'CD 4', 'CD 5', 'CD 6', 'CD 7', 'CD 8', 'CD 9'],
+          categories: ['Democrat', 'Green Party', 'Libertarian', 'Other', 'Republican'],
           title: {
-            text: 'Congressional District'
+            text: 'Political Party'
           }
         },
         yaxis: {
@@ -87,25 +87,25 @@ export default {
           offsetY: -25,
           offsetX: -5
         },
-        CDtotals: null,
-        CDpcts: null
+        Ptytotals: null,
+        Ptypcts: null
       }
     }
   },
 
   created: function () {
     axios.get('https://hevm-backend.herokuapp.com/api/training_data_count/', {
-      params: { key: 'CD' }
+      params: { key: 'party' }
     })
       .then((response) => {
-        this.CDtotals = response.data
+        this.Ptytotals = response.data
 
         var arr = []
-        for (var i = 0; i < this.CDtotals.length; i++) {
+        for (var i = 0; i < this.Ptytotals.length; i++) {
           arr.push(
-            Math.floor(parseFloat(this.CDtotals[i].early_vote_yes) / parseFloat(this.CDtotals[i].CD__count) * 100))
+            Math.floor(parseFloat(this.Ptytotals[i].early_vote_yes) / parseFloat(this.Ptytotals[i].party__count) * 100))
         }
-        this.CDpcts = arr
+        this.Ptypcts = arr
       }
       )
   },
@@ -119,9 +119,9 @@ export default {
     },
 
     updateChart: function () {
-      console.log(this.CDpcts)
+      console.log(this.Ptypcts)
       this.series = [{
-        data: this.CDpcts
+        data: this.Ptypcts
       }]
       console.log(this.series.data)
     }
