@@ -1,4 +1,8 @@
-# frontend
+## At A Glance
+
+This is the fronted of the Voter Prediction Tool website that can be accessed here: [LINK](hevm-frontend.herokuapp.com)
+
+This tool is built with the Vuejs framework and deployed to Heroku. 
 
 ## Project setup
 ```
